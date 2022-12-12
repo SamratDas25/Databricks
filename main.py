@@ -8,15 +8,6 @@ from pyspark.sql.functions import *
 spark = SparkSession.builder.getOrCreate()
 dbutils = DBUtils(spark)
 
-def plustwo(n):
-    out = n + 2
-    return out
-
-
-def falldist(t,g=9.81):
-    d = 0.5 * g * t**2
-    return d
-
 def wrapperFunction(JobId):
     # username = dbutils.secrets.get(scope="dbscope1", key="sqluser")
     # sqlpassword = dbutils.secrets.get(scope="dbscope1", key="sqlpass")
