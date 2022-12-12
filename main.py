@@ -18,52 +18,52 @@ def falldist(t,g=9.81):
     return d
 
 def wrapperFunction(JobId):
-    username = dbutils.secrets.get(scope="dbscope1", key="sqluser")
-    sqlpassword = dbutils.secrets.get(scope="dbscope1", key="sqlpass")
-    Querydata = 'Select * From Job_Rule_Assignment Where Job_Id = ' + str(JobId)
-    JobRuleDetails_df = spark.read.format("jdbc") \
-        .option("url", f"jdbc:sqlserver://testsql-ss.database.windows.net:1433;database=testsqldb-ss") \
-        .option("query", Querydata) \
-        .option("user", username) \
-        .option("password", sqlpassword) \
-        .option("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver") \
-        .load()
-    # Rule_df = Rule_df.filter(Rule_df.Rule_Name == RuleName)
-    JobRuleDetails_pdf = JobRuleDetails_df.toPandas()
-    # print(JobRuleDetails_pdf)
-    for ind in JobRuleDetails_pdf.index:
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 1):
-            CheckJobRule_CountValidation(1, 1, 'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
-                                         'Bluesky.txt',
-                                         'CountValidation')
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 2):
-            print("2")
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 3):
-            CheckJobRule_ThresoldValidation(1, 1,
-                                            'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
-                                            'Bluesky.txt',
-                                            'ThresholdValidation')
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 4):
-            CheckJobRule_FileNameValidation(1, 1,
-                                            'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
-                                            'Bluesky.txt',
-                                            'FileNameValidation')
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 5):
-            CheckJobRule_FileSizeValidation(1, 1,
-                                            'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
-                                            'Bluesky.txt',
-                                            'FileSizeValidation')
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 6):
-            print("6")
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 7):
-            print("7")
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 8):
-            print("8")
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 9):
-            print("9")
-        if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 10):
-            print("10")
-
+    # username = dbutils.secrets.get(scope="dbscope1", key="sqluser")
+    # sqlpassword = dbutils.secrets.get(scope="dbscope1", key="sqlpass")
+    # Querydata = 'Select * From Job_Rule_Assignment Where Job_Id = ' + str(JobId)
+    # JobRuleDetails_df = spark.read.format("jdbc") \
+    #     .option("url", f"jdbc:sqlserver://testsql-ss.database.windows.net:1433;database=testsqldb-ss") \
+    #     .option("query", Querydata) \
+    #     .option("user", username) \
+    #     .option("password", sqlpassword) \
+    #     .option("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver") \
+    #     .load()
+    # # Rule_df = Rule_df.filter(Rule_df.Rule_Name == RuleName)
+    # JobRuleDetails_pdf = JobRuleDetails_df.toPandas()
+    # # print(JobRuleDetails_pdf)
+    # for ind in JobRuleDetails_pdf.index:
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 1):
+    #         CheckJobRule_CountValidation(1, 1, 'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
+    #                                      'Bluesky.txt',
+    #                                      'CountValidation')
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 2):
+    #         print("2")
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 3):
+    #         CheckJobRule_ThresoldValidation(1, 1,
+    #                                         'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
+    #                                         'Bluesky.txt',
+    #                                         'ThresholdValidation')
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 4):
+    #         CheckJobRule_FileNameValidation(1, 1,
+    #                                         'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
+    #                                         'Bluesky.txt',
+    #                                         'FileNameValidation')
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 5):
+    #         CheckJobRule_FileSizeValidation(1, 1,
+    #                                         'abfss://targetcontainer@adlstoadls.dfs.core.windows.net/Log_directory/',
+    #                                         'Bluesky.txt',
+    #                                         'FileSizeValidation')
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 6):
+    #         print("6")
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 7):
+    #         print("7")
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 8):
+    #         print("8")
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 9):
+    #         print("9")
+    #     if ((JobRuleDetails_pdf['Rule_Id'][ind]) == 10):
+    #         print("10")
+    return JobId
     # print(JobRuleDetails_pdf)
 
 def CheckJobRule_CountValidation(JobId, FileId, FilePath, FileName, RuleName):
